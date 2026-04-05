@@ -1,0 +1,102 @@
+/* app/globals.css
+   ============================================================
+   THE LONDON PROTOCOL — Tailwind v4 CSS-first configuration
+   @theme replaces tailwind.config.ts entirely in Tailwind v4
+   ============================================================ */
+
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+@theme {
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-family-display: "Playfair Display", Georgia, serif;
+  --font-family-mono:    "DM Mono", monospace;
+  --font-family-sans:    "DM Sans", system-ui, sans-serif;
+
+  /* ── Protocol palette ───────────────────────────────────── */
+  --color-protocol-ink:           #1a1a18;
+  --color-protocol-muted:         #5a5a56;
+  --color-protocol-faint:         #9a9a94;
+  --color-protocol-cream:         #f7f4ee;
+  --color-protocol-cream-dark:    #ede9e0;
+  --color-protocol-gold:          #b8860b;
+  --color-protocol-gold-light:    #f0e8c8;
+  --color-protocol-teal:          #1D9E75;
+  --color-protocol-teal-light:    #E1F5EE;
+  --color-protocol-teal-dark:     #0f6e56;
+  --color-protocol-border:        rgba(26 26 24 / 0.12);
+  --color-protocol-border-strong: rgba(26 26 24 / 0.22);
+
+  /* ── Spacing overrides ──────────────────────────────────── */
+  --radius-sm: 3px;    /* Our default border-radius — not Tailwind's 4px */
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-protocol-cream);
+    color:            var(--color-protocol-ink);
+    font-family:      var(--font-family-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ── Custom utilities (Tailwind v4 @utility API) ───────────── */
+@utility font-display {
+  font-family: var(--font-family-display);
+}
+
+@utility font-mono {
+  font-family: var(--font-family-mono);
+}
+
+@utility rounded-protocol {
+  border-radius: var(--radius-sm);  /* 3px */
+}
+
+@utility animate-step-in {
+  animation: stepIn 0.22s ease forwards;
+}
+
+@utility animate-card-in {
+  animation: cardIn 0.3s ease forwards;
+}
+
+@utility animate-chip-in {
+  animation: chipIn 0.2s ease forwards;
+}
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes chipIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes shimmer {
+  0%   { opacity: 0.5; }
+  50%  { opacity: 1;   }
+  100% { opacity: 0.5; }
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-protocol-cream-dark); border-radius: 2px; }
